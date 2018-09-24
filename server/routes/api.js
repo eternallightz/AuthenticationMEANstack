@@ -44,4 +44,24 @@
     });
  });
 
+ router.get('/events', (req, res) => {
+    let events = [
+        {
+            "name": "Regular user",
+            "description": "lorem ipsum"
+        }
+    ];
+    res.json(events);
+ });
+ 
+ router.get('/special', (rec, res) => {
+    let events = [
+        {
+            "name": "Special user",
+            "description": "Wildfire"
+        }
+    ];
+    res.json(events);
+ });
+
  module.exports = router;
