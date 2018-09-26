@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'special',
-    component: SpecialEventsComponent
+    component: SpecialEventsComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: 'login',
