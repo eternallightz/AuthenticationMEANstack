@@ -1,3 +1,6 @@
+import { LogsComponent } from './logs/logs.component';
+import { LogsService } from './logs.service';
+import { NameService } from './name.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { AuthGuard } from './auth.guard';
 
@@ -15,6 +18,13 @@ import { SpecialEventsComponent } from './special-events/special-events.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from '../app/auth.service';
 import { EventService } from './event.service';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { OwnerComponent } from './rights/owner/owner.component';
+import { SuperadmComponent } from './rights/superadm/superadm.component';
+import { AdmComponent } from './rights/adm/adm.component';
+
+
+
 
 
 @NgModule({
@@ -23,15 +33,20 @@ import { EventService } from './event.service';
     RegisterComponent,
     LoginComponent,
     EventsComponent,
-    SpecialEventsComponent
+    SpecialEventsComponent,
+    OwnerComponent,
+    SuperadmComponent,
+    AdmComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RecaptchaModule.forRoot()
   ],
-  providers: [AuthService, EventService, AuthGuard,
+  providers: [AuthService, EventService, AuthGuard, NameService, LogsService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

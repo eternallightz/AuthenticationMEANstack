@@ -1,3 +1,4 @@
+import { LogsService } from './logs.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -6,7 +7,7 @@ export class AuthService {
   private _registerUrl = 'http://localhost:3000/api/register';
   private _loginUrl = 'http://localhost:3000/api/login';
 
-  constructor(private http: HttpClient, private _router: Router) { }
+  constructor(private http: HttpClient, private _router: Router, private _logsService: LogsService) { }
   registerUser(user) {
     return this.http.post<any>(this._registerUrl, user);
   }
@@ -22,6 +23,8 @@ export class AuthService {
   }
   logoutUser() {
     localStorage.removeItem('token');
+    this._logsService.logs = false;
+    this._logsService.actions.push('Нажата кнопка Logout');
     this._router.navigate(['/events']);
   }
 }
